@@ -14,6 +14,8 @@ import Feedbacks from '@/view/Feedbacks'
 import UserList from '@/view/UserList'
 import AppliedCommission from '../view/AppliedCommission'
 import Acommission from '../view/Acommission'
+import Topics from '../view/Topics'
+import Topic from '../view/Topic'
 
 const routes = [
 	{
@@ -86,22 +88,16 @@ const routes = [
 		component: Acommission
 	},
 	{
-		path: '/asr-commission/comment/commission/:commissionId',
-		name: 'asr-commission-comment-commission',
+		path: '/asr-topic/topics/',
+		name: 'asr-topics',
 		meta: {requireAuth : true},
-		component: CheckedActivity
+		component: Topics
 	},
 	{
-		path: '/asr-topic/checked/topic/:topicId',
-		name: 'asr-topic-checked-topic',
+		path: '/asr-topic/topic/:topicId',
+		name: 'asr-topic',
 		meta: {requireAuth : true},
-		component: CheckedActivity
-	},
-	{
-		path: '/asr-topic/checked/topic/:topicId',
-		name: 'asr-topic-comment-topic',
-		meta: {requireAuth : true},
-		component: CheckedActivity
+		component: Topic
 	},
 	{
 		path: '/404',

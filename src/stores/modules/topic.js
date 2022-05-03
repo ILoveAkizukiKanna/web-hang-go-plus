@@ -2,47 +2,48 @@ import request from "../../utils/request";
 
 export default {
 	state: {
-		commissionInfo: {},
+		topicInfo: {},
 		comments: []
 	},
 	mutations: {
-		SET_APPLIED_ACOMMISSION: (state, payload) => {
-			let info = payload.commissionInfo
-			state.commissionInfo = {
+		SET_TOPIC: (state, payload) => {
+			let info = payload.topicInfo
+			state.topicInfo = {
 				id: info.id,
 				name: info.name,
-				isReal: info.real_time == 1 ? '是' : '否',
-				startTime: info.start_time,
-				stopTime: info.end_time,
+				startTime: info.create_at,
+				like: info.like,
+				follow: info.follow,
+				user: info.create_user.nickName,
 				description: info.description,
 				photo: 'https://114.116.215.100:443' + info.photo,
 				hasPhoto: info.photo !== '',
 				type: info.type
 			}
 		},
-		SET_CCOMMENTS: (state, payload) => {
+		SET_TCOMMENTS: (state, payload) => {
 			state.comments = payload.comments
 		},
-		CLEAR_CCOMMENT: () => {
+		CLEAR_TCOMMENT: () => {
 
 		},
-		APPLIED_COMMISSION_NOP: () => {
+		TOPIC_NOP: () => {
 		
 		}
 	},
 	actions: {
-		GET_APPLIED_ACOMMISSION: ({ commit }, payload) => {
+		GET_TOPIC: ({ commit }, payload) => {
 			return new Promise((resolve, reject) => {
 				request({
-					url: 'commission/detail/',
-					method: 'post',
+					url: 'topic/' + payload.topicId + '/',
+					method: 'get',
 					data: {
-						commission_id : payload.commissionId
+						
 					}
 				}).then(response => {
 
-					commit('SET_APPLIED_ACOMMISSION', {
-						commissionInfo: response
+					commit('SET_TOPIC', {
+						topicInfo: response
 					})
 					resolve(true)
 				}).catch(err => {
@@ -51,10 +52,10 @@ export default {
 				})
 			})
 		},
-		GET_CCOMMENTS: ({ commit }, payload) => {
+		GET_TCOMMENTS: ({ commit }, payload) => {
 			return new Promise((resolve, reject) => {
 				request({
-					url: 'comment_commissions/' + payload.commissionId + '/',
+					url: 'comment_topic/' + payload.topicId + '/',
 					method: 'get'
 				}).then(response => {
 					const comments = []
@@ -77,11 +78,11 @@ export default {
 				})
 			})
 		},
-		DELETE_CCOMMENT: ({ commit }, payload) => {
+		DELETE_TCOMMENT: ({ commit }, payload) => {
 			// console.log(payload);
 			return new Promise((resolve, reject) => {
 				request({
-					url: '/commission/comment/' + payload.commentId + '/',
+					url: '/topic/comment/' + payload.commentId + '/',
 					method: 'delete'
 				}).then(() => {
 					commit('CLEAR_COMMENT')
@@ -91,18 +92,18 @@ export default {
 				})
 			})
 		},
-		NOT_PASS_CHECK_COMMISSION: ({ commit }, payload) => {
+		NOT_PASS_TOPIC: ({ commit }, payload) => {
 			return new Promise((resolve, reject) => {
 				request({
-					url: 'users_admin/reject_commission/',
+					url: 'users_admin/reject_topic/',
 					method: 'post',
 					data: {
-						id: payload.commissionId,
+						id: payload.topicId,
 						reason: payload.reason
 					}
 				}).then(() => {
 					// console.log(response)
-					commit('APPLIED_COMMISSION_NOP')
+					commit('TOPIC_NOP')
 					resolve(true)
 				}).catch(err => {
 					// console.log(err)

@@ -11,6 +11,8 @@ import Feedbacks from './modules/feedbacks'
 import UserList from './modules/userList'
 import AppliedCommission from './modules/appliedCommission'
 import Acommission from './modules/acommission'
+import Topics from './modules/topics'
+import Topic from './modules/topic'
 
 Vue.use(Vuex)
 
@@ -26,5 +28,7 @@ export default new Vuex.Store({
 		userList: UserList,
 		appliedCommission: AppliedCommission,
 		acommission: Acommission,
+		topics: Topics,
+		topic: Topic,
 	}
 })

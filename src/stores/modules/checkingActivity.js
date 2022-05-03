@@ -19,7 +19,7 @@ export default {
 				stopTime: info.normal_activity.end_at,
 				capacity: info.normal_activity.allow_total,
 				description: info.normal_activity.description,
-				photo: 'https://se.alangy.net' + info.photo,
+				photo: 'http://114.116.215.100:443' + info.photo,
 				hasPhoto: info.photo !== '',
 				type: info.activity_type.name
 			}

@@ -22,14 +22,11 @@
 			<a-sub-menu key="8" @titleClick="titleClick">
 				<span slot="title"><a-icon type="carry-out" /><span>委托管理</span></span>
 				<a-menu-item key="9">审核委托</a-menu-item>
-				<a-menu-item key="10">已完成委托</a-menu-item>
-				<a-menu-item key="11">审核评论</a-menu-item>
 			</a-sub-menu>
 			
-			<a-sub-menu key="12" @titleClick="titleClick">
+			<a-sub-menu key="11" @titleClick="titleClick">
 				<span slot="title"><a-icon type="aliwangwang" /><span>话题管理</span></span>
-				<a-menu-item key="13">审核话题</a-menu-item>
-				<a-menu-item key="14">审核评论</a-menu-item>
+				<a-menu-item key="12">审核话题</a-menu-item>
 			</a-sub-menu>
 			
 			<a-sub-menu key="4" @titleClick="titleClick">
@@ -63,13 +60,13 @@ export default {
 				'6': '/asr-feedbacks',
 				'7': '/asr-user-manage/users',
 				'9': '/asr-commission/applied/commission',
+				'12': '/asr-topic/topics'		
 			},
-			currentOpen : ['1', '4', '8', '12'],
+			currentOpen : ['1', '4', '8', '11'],
 		};
 	},
 	methods: {
 		handleClick(e) {
-			console.log(e)
 			if (e.key !== '0') {
 				this.current = e.key
 				this.$router.push(this.routes[e.key])
@@ -78,8 +75,7 @@ export default {
 				// this.currentOpen = []
 			}
 		},
-		titleClick(e) {
-			console.log(e)
+		titleClick() {
 			// if (this.currentOpen.indexOf(e.key) !== -1) {
 			// 	this.currentOpen = []
 			// } else {
