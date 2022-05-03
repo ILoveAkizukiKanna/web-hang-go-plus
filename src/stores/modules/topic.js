@@ -65,11 +65,12 @@ export default {
 							commentId: m.id,
 							author: m.user.nickName,
 							avatar: m.user.avatarUrl,
-							content: m.comment,
+							content: m.comment_content,
 							datetime: m.comment_time
 						})
 					}
-					commit('SET_CCOMMENTS', {
+					console.log(comments)
+					commit('SET_TCOMMENTS', {
 						comments: comments
 					})
 					resolve(true)
@@ -82,7 +83,7 @@ export default {
 			// console.log(payload);
 			return new Promise((resolve, reject) => {
 				request({
-					url: '/topic/comment/' + payload.commentId + '/',
+					url: '/topic_comment/' + payload.commentId + '/',
 					method: 'delete'
 				}).then(() => {
 					commit('CLEAR_COMMENT')
@@ -95,11 +96,11 @@ export default {
 		NOT_PASS_TOPIC: ({ commit }, payload) => {
 			return new Promise((resolve, reject) => {
 				request({
-					url: 'users_admin/reject_topic/',
-					method: 'post',
+					url: '/topic/' + payload.topicId + '/',
+					method: 'put',
 					data: {
-						id: payload.topicId,
-						reason: payload.reason
+						audit: 2,
+						msg: payload.reason
 					}
 				}).then(() => {
 					// console.log(response)
