@@ -18,7 +18,8 @@ import Topics from '../view/Topics'
 import Topic from '../view/Topic'
 import TypeCommission from "../view/TypeCommission";
 import TypeCommissionDetail from "../view/TypeCommissionDetail";
-
+import TypeTopic from "../view/TypeTopic";
+import TypeTopicDetail from "../view/TypeTopicDetail";
 const routes = [
 	{
 		path: '/',
@@ -112,6 +113,18 @@ const routes = [
 		name: 'asr-commission-type-commission-detail',
 		meta: {requireAuth : true},
 		component: TypeCommissionDetail
+	},
+	{
+		path: '/asr-topic/type/topic',
+		name: 'asr-topic-type-topic',
+		meta: {requireAuth : true},
+		component: TypeTopic
+	},
+	{
+		path: '/asr-topic/type/topic/detail/:typeId',
+		name: 'asr-topic-type-topic-detail',
+		meta: {requireAuth : true},
+		component: TypeTopicDetail
 	},
 	{
 		path: '/404',

@@ -17,7 +17,7 @@
 			</div>
 		</div>
         <div style="margin: 24px">
-          <a-table :columns="columns" :data-source="typeCommissionInfo"
+          <a-table :columns="columns" :data-source="typeTopicInfo"
                    class="w-auto">
             <span slot="typeTitle"><a-icon type="carry-out" />类别名称</span>
             <span slot="action" slot-scope="text, record">
@@ -35,7 +35,7 @@ import Navbar from "../components/Navbar";
 import Header from "../components/Header";
 import {mapState} from 'vuex'
 export default {
-  name: "TypeCommission",
+  name: "TypeTopic",
   components: {
     Navbar,
     Header
@@ -60,13 +60,13 @@ export default {
   },
   computed: {
     ...mapState({
-      typeCommissionInfo: state => state.typeCommission.typeCommissionInfo
+      typeTopicInfo: state => state.typeTopic.typeTopicInfo
     })
   },
   methods: {
-    getTypeCommissionInfo () {
+    getTypeTopicInfo () {
       const that = this
-      this.$store.dispatch('GET_TYPE_COMMISSION').then(() => {
+      this.$store.dispatch('GET_TYPE_TOPIC').then(() => {
       })
           .catch(() => {
             that.$message.error('加载类别列表失败')
@@ -74,11 +74,11 @@ export default {
     },
     routeToType (typeId) {
       //TODO
-      this.$router.push('/asr-commission/type/commission/detail/' + typeId)
+      this.$router.push('/asr-topic/type/topic/detail/' + typeId)
     }
   },
   mounted () {
-    this.getTypeCommissionInfo()
+    this.getTypeTopicInfo()
   }
 }
 </script>

@@ -63,7 +63,8 @@ export default {
 				'7': '/asr-user-manage/users',
 				'9': '/asr-commission/applied/commission',
 				'12': '/asr-topic/topics',
-				'13': '/asr-commission/type/commission'
+				'13': '/asr-commission/type/commission',
+				'14': '/asr-topic/type/topic'
 			},
 			currentOpen : ['1', '4', '8', '11'],
 		};
