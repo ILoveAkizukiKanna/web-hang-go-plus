@@ -16,7 +16,7 @@ export default {
 				follow: info.follow,
 				user: info.create_user.nickName,
 				description: info.description,
-				photo: 'https://114.116.215.100:443' + info.photo,
+				photo: 'http://114.116.215.100:443' + info.photo,
 				hasPhoto: info.photo !== '',
 				type: info.type
 			}

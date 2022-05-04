@@ -23,17 +23,6 @@
 								<a-descriptions-item>{{ commissionInfo.description }}</a-descriptions-item>
 							</a-descriptions>
 						</a-card>
-						<a-card class="mb-3">
-							<a-descriptions title="图片"></a-descriptions>
-							<div class="flex flex-row flex-wrap" v-if="commissionInfo.hasPhoto">
-								<div class="w-1/3 px-2">
-									<div class="h-72 bg-gray-100 border">
-										<img class="object-contain w-full h-full" :src="commissionInfo.photo"  alt=" "/>
-									</div>
-								</div>
-							</div>
-							<p v-else>无</p>
-						</a-card>
 						<a-card class='mb-3'>
 							<a-descriptions title="驳回理由 (不超过100个字)">
 							</a-descriptions>
