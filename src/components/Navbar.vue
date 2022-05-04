@@ -22,11 +22,13 @@
 			<a-sub-menu key="8" @titleClick="titleClick">
 				<span slot="title"><a-icon type="carry-out" /><span>委托管理</span></span>
 				<a-menu-item key="9">审核委托</a-menu-item>
+        <a-menu-item key="13">管理类别</a-menu-item>
 			</a-sub-menu>
 			
 			<a-sub-menu key="11" @titleClick="titleClick">
 				<span slot="title"><a-icon type="aliwangwang" /><span>话题管理</span></span>
 				<a-menu-item key="12">审核话题</a-menu-item>
+        <a-menu-item key="14">管理类别</a-menu-item>
 			</a-sub-menu>
 			
 			<a-sub-menu key="4" @titleClick="titleClick">
@@ -60,7 +62,8 @@ export default {
 				'6': '/asr-feedbacks',
 				'7': '/asr-user-manage/users',
 				'9': '/asr-commission/applied/commission',
-				'12': '/asr-topic/topics'		
+				'12': '/asr-topic/topics',
+        '13': '/asr-commission/type/commission'
 			},
 			currentOpen : ['1', '4', '8', '11'],
 		};

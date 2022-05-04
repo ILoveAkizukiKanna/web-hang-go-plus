@@ -13,6 +13,8 @@ import AppliedCommission from './modules/appliedCommission'
 import Acommission from './modules/acommission'
 import Topics from './modules/topics'
 import Topic from './modules/topic'
+import TypeCommission from "./modules/typeCommission";
+import TypeCommissionDetail from "./modules/typeCommissionDetail";
 
 Vue.use(Vuex)
 
@@ -30,5 +32,7 @@ export default new Vuex.Store({
 		acommission: Acommission,
 		topics: Topics,
 		topic: Topic,
+		typeCommission: TypeCommission,
+		typeCommissionDetail: TypeCommissionDetail,
 	}
 })
