@@ -6,7 +6,7 @@
       </a-col>
       <a-col style="background-color: #f0f2f5;overflow-y: auto;margin-left: 250px" class="h-full">
         <Header></Header>
-		<div style="margin-left: 20px; margin-top: 20px;">
+<!-- 		<div style="margin-left: 20px; margin-top: 20px;">
 			<div class="w-full h-8">
 				<div class="w-1/2 h-full space-x-4">
 					<button
@@ -15,7 +15,7 @@
 					>增加新分类</button>
 				</div>
 			</div>
-		</div>
+		</div> -->
         <div style="margin: 24px">
           <a-table :columns="columns" :data-source="typeCommissionInfo"
                    class="w-auto">

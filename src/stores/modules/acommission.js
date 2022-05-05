@@ -17,7 +17,7 @@ export default {
 				description: info.description,
 				photo: 'http://114.116.215.100:443' + info.photo,
 				hasPhoto: info.photo !== '',
-				type: info.type
+				type: info.commission_type.name
 			}
 		},
 		SET_CCOMMENTS: (state, payload) => {
@@ -40,7 +40,7 @@ export default {
 						commission_id : payload.commissionId
 					}
 				}).then(response => {
-
+					console.log(response)
 					commit('SET_APPLIED_ACOMMISSION', {
 						commissionInfo: response
 					})

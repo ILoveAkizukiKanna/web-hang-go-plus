@@ -18,7 +18,7 @@ export default {
 				description: info.description,
 				photo: 'http://114.116.215.100:443' + info.photo,
 				hasPhoto: info.photo !== '',
-				type: info.type
+				type: info.topic_type.name
 			}
 		},
 		SET_TCOMMENTS: (state, payload) => {
@@ -103,11 +103,9 @@ export default {
 						msg: payload.reason
 					}
 				}).then(() => {
-					// console.log(response)
 					commit('TOPIC_NOP')
 					resolve(true)
 				}).catch(err => {
-					// console.log(err)
 					reject(err)
 				})
 			})

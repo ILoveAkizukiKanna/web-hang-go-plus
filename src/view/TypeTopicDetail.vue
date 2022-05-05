@@ -34,7 +34,7 @@
                 <a-spin size="large" :spinning="spinning" />
               </div>
 
-              <div>
+<!--              <div>
                 <a-modal v-model="visible" title="Title" @ok="handleOk">
                   <template #footer>
                     <a-button key="back" @click="handleCancel">取消</a-button>
@@ -53,7 +53,7 @@
                     </div>
                   </div>
                 </a-modal>
-              </div>
+              </div> -->
 
             </div>
           </a-page-header>

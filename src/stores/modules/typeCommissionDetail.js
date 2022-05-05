@@ -11,7 +11,7 @@ export default {
                 typeId: info.id,
                 name: info.name,
                 photo: 'http://114.116.215.100:443/' + info.image,
-                hasPhoto: info.photo !== '',
+                hasPhoto: info.photo != '',
             }
         },
         TYPE_COMMISSION_DEL: () => {
