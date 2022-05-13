@@ -17,6 +17,9 @@ export default {
         TYPE_TOPIC_DEL: () => {
 
         },
+        TYPE_TOPIC_CHANGE: () => {
+
+        }
     },
     actions: {
         GET_TYPE_TOPIC_DETAIL: ({ commit }, payload) => {
@@ -40,10 +43,10 @@ export default {
                 })
             })
         },
-        DEL_TYPE: ({ commit }, payload) => {
+        DEL_TYPE_TOPIC: ({ commit }, payload) => {
             return new Promise((resolve, reject) => {
                 request({
-                    url: 'topic_types/' + payload.typeId + '/',
+                    url: 'topic_types/{id}/' + payload.typeId + '/',
                     method: 'delete',
                     data: {
                         id: payload.typeId,
@@ -57,6 +60,26 @@ export default {
                     reject(err)
                 })
             })
-        }
+        },
+        CHANGE_TYPE_TOPIC: ({ commit }, payload) => {
+            return new Promise((resolve, reject) => {
+                request({
+                    url: 'topic_types/' + payload.typeId + '/',
+                    method: 'put',
+                    data: {
+                        id: payload.typeId,
+                        name: payload.name,
+                        image: payload.photo
+                    }
+                }).then(() => {
+                    // console.log(response)
+                    commit('TYPE_TOPIC_CHANGE')
+                    resolve(true)
+                }).catch(err => {
+                    // console.log(err)
+                    reject(err)
+                })
+            })
+        },
     }
 }

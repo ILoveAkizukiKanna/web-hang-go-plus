@@ -36,6 +36,25 @@ export default {
                     reject(err)
                 })
             })
-        }
+        },
+        ADD_TYPE_COMMISSION: ({ commit }, payload) => {
+            return new Promise((resolve, reject) => {
+                request({
+                    url: 'commission/sort/',
+                    method: 'post',
+                    data: {
+                        name: payload.name,
+                        image: payload.photo
+                    }
+                }).then(() => {
+                    // console.log(response)
+                    commit('TYPE_COMMISSION_ADD')
+                    resolve(true)
+                }).catch(err => {
+                    // console.log(err)
+                    reject(err)
+                })
+            })
+        },
     }
 }

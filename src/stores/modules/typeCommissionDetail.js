@@ -17,6 +17,12 @@ export default {
         TYPE_COMMISSION_DEL: () => {
 
         },
+        TYPE_COMMISSION_CHANGE: () => {
+
+        },
+        TYPE_COMMISSION_ADD: () => {
+
+        },
     },
     actions: {
         GET_TYPE_COMMISSION_DETAIL: ({ commit }, payload) => {
@@ -40,7 +46,7 @@ export default {
                 })
             })
         },
-        DEL_TYPE: ({ commit }, payload) => {
+        DEL_TYPE_COMMISSION: ({ commit }, payload) => {
             return new Promise((resolve, reject) => {
                 request({
                     url: 'commission/sort/' + payload.typeId + '/',
@@ -57,6 +63,27 @@ export default {
                     reject(err)
                 })
             })
-        }
+        },
+        CHANGE_TYPE_COMMISSION: ({ commit }, payload) => {
+            return new Promise((resolve, reject) => {
+                request({
+                    url: 'commission/sort/' + payload.typeId + '/',
+                    method: 'put',
+                    data: {
+                        id: payload.typeId,
+                        name: payload.name,
+                        image: payload.photo
+                    }
+                }).then(() => {
+                    // console.log(response)
+                    commit('TYPE_COMMISSION_CHANGE')
+                    resolve(true)
+                }).catch(err => {
+                    // console.log(err)
+                    reject(err)
+                })
+            })
+        },
+
     }
 }

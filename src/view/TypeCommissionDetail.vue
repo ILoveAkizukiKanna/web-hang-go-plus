@@ -34,29 +34,35 @@
             <div class="w-full h-16">
               <div class="w-1/2 h-full space-x-4">
                 <button
-                    class="w-1/5 h-full text-lg ant-btn-primary focus:border-0"
-                    @click="showChange(typeCommissionDetailInfo.typeId)">修改</button>
+                    class="w-1/5 h-full text-lg ant-btn-danger focus:border-0"
+                    @click="deleteType(typeCommissionDetailInfo.typeId)">删除</button>
+                <a-spin size="large" :spinning="spinning" />
+                <button
+                  class="w-1/5 h-full text-lg ant-btn-primary focus:border-0"
+                  @click="showChange(typeCommissionDetailInfo.typeId)">修改</button>
                 <a-spin size="large" :spinning="spinning" />
               </div>
 
-<!--              <div>
-                <a-modal v-model="visible" title="修改类别" @ok="handleOk">
+              <div>
+                <a-modal v-model="visible" title="修改类别">
                   <template #footer>
-                    <a-button key="submit" type="primary" :loading="loading" @click="handleOk">提交</a-button>
+                    <a-button key="submit" type="primary" :loading="loading" @click="handleOk(typeCommissionDetailInfo.typeId)">提交</a-button>
                   </template>
                   <div>
-					<h5>修改名称</h5><br>
-                    <a-input v-model="typeCommissionDetailInfo.name" placeholder="类别名称" />
-					<br><br><br><br>
-					<h5>修改图片</h5><br>
-					<form action="" enctype="multipart/form-data">
-						<input id="file" class="filepath" onchange="changepic(this)" type="file"/><br>
-						<img :src="typeCommissionDetailInfo.photo" id="show" width="200">
-					</form>
+                    <h5>修改名称</h5><br>
+                              <a-input v-model="typeCommissionDetailInfo.name" placeholder="类别名称" />
+                    <br><br><br><br>
+                    <h5>修改图片</h5><br>
+                    <form action="" enctype="multipart/form-data">
+<!--                      <input type="file" name="" id="file" class="filepath" accept="image/jpeg,image/jpg,image/png" @change="changeImage" />-->
+                      <input type="file" name="" id="file" class="filepath" accept="image/jpeg,image/jpg,image/png" @change="changeImage" />
+<!--                      <input id="file" class="filepath" onchange="changepic()" type="file"/><br>-->
+<!--                      <img :src="(src == null)?typeCommissionDetailInfo.photo:src" id="show" >-->
+                      <img :src="(src=='')?typeCommissionDetailInfo.photo:src" id="show" >
+                    </form>
                   </div>
                 </a-modal>
-              </div> -->
-
+              </div>
             </div>
           </a-page-header>
         </div>
@@ -88,7 +94,7 @@ export default {
 
       visible: false,
       loading: false,
-
+      src: ''
     }
   },
   computed: {
@@ -120,12 +126,12 @@ export default {
         okType: 'danger',
         cancelText: '取消',
         onOk () {
-          that.$store.dispatch('DEL_TYPE', {
-            typeId: typeId
+          that.$store.dispatch('DEL_TYPE_COMMISSION', {
+            typeId: typeId,
           }).then((data) => {
             if (data) {
               that.$message.success('操作成功')
-              this.$router.push('/asr-commission/Type/commission')
+              // this.$router.push('/asr-commission/Type/commission/')
             }
           }).catch(() => {
             that.$message.error('操作失败')
@@ -134,13 +140,38 @@ export default {
       })
     },
     showChange(typeId) {
-		this.$data.visible = true
-		console.log(typeId)
-    },
-    handleOk() {
+      this.$data.visible = true
+      console.log(typeId)
 
     },
-	
+    changeImage(e) {
+      var file = e.target.files[0];
+      var reader = new FileReader();
+      var that = this;
+      reader.readAsDataURL(file);
+      reader.onload = function() {
+        // that.typeCommissionDetailInfo.photo = this.result;
+        that.src = this.result
+      };
+    },
+    handleOk(typeId) {
+      console.log(typeId)
+      const that = this
+      that.$store.dispatch('CHANGE_TYPE_COMMISSION', {
+        typeId: typeId,
+        name: that.typeCommissionDetailInfo.name,
+        // photo: that.typeCommissionDetailInfo.photo
+        photo: that.src
+      }).then((data) => {
+        if (data) {
+          that.$message.success('操作成功')
+          that.$data.visible = false
+          this.$router.push('/asr-commission/Type/commission')
+        }
+      }).catch(() => {
+        that.$message.error('操作失败')
+      })
+    },
   },
   mounted() {
     this.getInfo()

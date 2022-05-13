@@ -36,6 +36,25 @@ export default {
                     reject(err)
                 })
             })
-        }
+        },
+        ADD_TYPE_TOPIC: ({ commit }, payload) => {
+            return new Promise((resolve, reject) => {
+                request({
+                    url: 'topic_types/',
+                    method: 'post',
+                    data: {
+                        name: payload.name,
+                        image: payload.photo
+                    }
+                }).then(() => {
+                    // console.log(response)
+                    commit('TYPE_TOPIC_ADD')
+                    resolve(true)
+                }).catch(err => {
+                    // console.log(err)
+                    reject(err)
+                })
+            })
+        },
     }
 }
