@@ -19,7 +19,7 @@ export default {
 				stopTime: info.normal_activity.end_at,
 				capacity: info.normal_activity.allow_total,
 				description: info.normal_activity.description,
-				photo: 'http://114.116.215.100:443' + info.photo,
+				photo: 'https://marfr1.2022martu1.cn/' + info.photo,
 				hasPhoto: info.photo !== '',
 				type: info.activity_type.name
 			}

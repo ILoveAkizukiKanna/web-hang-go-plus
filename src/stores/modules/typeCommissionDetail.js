@@ -10,7 +10,7 @@ export default {
             state.typeCommissionDetailInfo = {
                 typeId: info.id,
                 name: info.name,
-                photo: 'http://114.116.215.100:443/' + info.image,
+                photo: 'https://marfr1.2022martu1.cn/' + info.image,
                 hasPhoto: info.photo != '',
             }
         },

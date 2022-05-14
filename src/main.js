@@ -27,7 +27,7 @@ router.beforeEach((to, from, next) => {
 	}
 })
 
-document.title = '航Go - 活动发布与社交平台'
+document.title = '航Go - 大学生便民生活平台'
 new Vue({
 	router,
 	store,

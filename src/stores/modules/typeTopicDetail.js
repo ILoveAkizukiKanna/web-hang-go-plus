@@ -10,7 +10,7 @@ export default {
             state.typeTopicDetailInfo = {
                 typeId: info.id,
                 name: info.name,
-                photo: 'http://114.116.215.100:443/' + info.image,
+                photo: 'https://marfr1.2022martu1.cn/' + info.image,
                 hasPhoto: info.photo !== '',
             }
         },
@@ -46,7 +46,7 @@ export default {
         DEL_TYPE_TOPIC: ({ commit }, payload) => {
             return new Promise((resolve, reject) => {
                 request({
-                    url: 'topic_types/{id}/' + payload.typeId + '/',
+                    url: 'topic_types/' + payload.typeId + '/',
                     method: 'delete',
                     data: {
                         id: payload.typeId,
