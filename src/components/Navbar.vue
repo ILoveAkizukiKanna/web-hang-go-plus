@@ -3,14 +3,14 @@
 		<a-menu
 			mode="inline"
 			theme="dark"
-			:selected-keys=current
-			:open-keys="currentOpen"
+			:selected-keys="[myCurrent]"
+			:open-keys="myOpen"
 			@click="handleClick"
 			class="h-full"
-			title="活动发布与社交平台"
+			title="北航便民生活平台"
 		>
 			<a-menu-item key="0" class="test-center">
-				<p class="text-lg text-right inline-block align-middle" style="color: white">活动发布与社交平台</p>
+				<p class="text-lg text-right inline-block align-middle" style="color: white">北航便民生活平台</p>
 			</a-menu-item>
 			
 			<a-sub-menu key="1" @titleClick="titleClick">
@@ -22,13 +22,13 @@
 			<a-sub-menu key="8" @titleClick="titleClick">
 				<span slot="title"><a-icon type="carry-out" /><span>委托管理</span></span>
 				<a-menu-item key="9">审核委托</a-menu-item>
-        <a-menu-item key="13">管理类别</a-menu-item>
+				<a-menu-item key="13">管理类别</a-menu-item>
 			</a-sub-menu>
 			
 			<a-sub-menu key="11" @titleClick="titleClick">
 				<span slot="title"><a-icon type="aliwangwang" /><span>话题管理</span></span>
 				<a-menu-item key="12">审核话题</a-menu-item>
-        <a-menu-item key="14">管理类别</a-menu-item>
+				<a-menu-item key="14">管理类别</a-menu-item>
 			</a-sub-menu>
 			
 			<a-sub-menu key="4" @titleClick="titleClick">
@@ -46,14 +46,26 @@
 export default {
 	name: "Navbar",
 	props: {
-		defaultSelectedKey: {
-			type: String,
-			default: '1'
-		},
 	},
 	data() {
+		this.current = '1'
+		this.myMap = {
+			'1': ['1'],
+			'2': ['1'],
+			'3': ['1'],
+			'4': ['4'],
+			'5': ['4'],
+			'6': ['4'],
+			'7': ['4'],
+			'8': ['8'],
+			'9': ['8'],
+			'11': ['11'],
+			'12': ['11'],
+			'13': ['8'],
+			'14': ['11']
+		}
+		this.currentOpen = this.myMap[this.current]
 		return {
-			current: [/*'2','3','5','6','7','9','12','13', '14'*/],
 			theme: 'dark',
 			routes: {
 				'2': '/asr-activity/checking',
@@ -66,30 +78,27 @@ export default {
 				'13': '/asr-commission/type/commission',
 				'14': '/asr-topic/type/topic'
 			},
-			currentOpen : ['1', '4', '8', '11'],
+			myCurrent : this.current,
+			myOpen: this.myOpen
 		};
 	},
 	methods: {
 		handleClick(e) {
-			if (e.key !== '0') {
-				this.current = e.key
-				this.$router.push(this.routes[e.key])
-			} else {
-				this.current = '1'
-				// this.currentOpen = []
-			}
+			this.current = e.key;
+			this.myCurrent = e.key;
+			this.$router.push(this.routes[e.key])
+			this.currentOpen = this.myMap[e.key]
+			this.myOpen = this.myMap[e.key]
 		},
-		titleClick() {
-			// if (this.currentOpen.indexOf(e.key) !== -1) {
-			// 	this.currentOpen = []
-			// } else {
-			// 	this.currentOpen = [e.key]
-			// }
+		titleClick(e) {
+			this.currentOpen = this.myMap[e.key]
+			this.myOpen = this.myMap[e.key]
+			console.log("myopen is ")
+			console.log(this.myOpen)
 		}
 	},
 }
 </script>
 
 <style scoped>
-
 </style>
