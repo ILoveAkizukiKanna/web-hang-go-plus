@@ -17,6 +17,7 @@ import TypeCommission from "./modules/typeCommission";
 import TypeCommissionDetail from "./modules/typeCommissionDetail";
 import TypeTopic from "./modules/typeTopic";
 import TypeTopicDetail from "./modules/typeTopicDetail";
+import Auth from "./modules/auth"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -36,6 +37,7 @@ export default new Vuex.Store({
 		typeCommission: TypeCommission,
 		typeCommissionDetail: TypeCommissionDetail,
 		typeTopic:TypeTopic,
-		typeTopicDetail:TypeTopicDetail
+		typeTopicDetail:TypeTopicDetail,
+		auth: Auth,
 	}
 })

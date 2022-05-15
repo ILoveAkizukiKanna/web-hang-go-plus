@@ -15,6 +15,10 @@
             <span slot="customTitle">用户id</span>
 			<span slot="gender" slot-scope="gender">{{gender === 0 ? '未知' : gender === 1 ? '男' : '女'}}</span>
 			<span slot="avatarUrl" slot-scope="avatarUrl"><img :src="avatarUrl" alt="无"/></span>
+			
+			<span slot="action" slot-scope="text, record">
+				<a style="color: #00A0E9" @click="routeToAuth(record.id)">管理用户权限</a>
+			</span>
           </a-table>
         </div>
       </a-col>
@@ -39,13 +43,13 @@ export default {
         key: 'id',
         slots: {title: 'customTitle'},
         scopedSlots: {customRender: 'id'},
-        width: '15%',
+        width: '8%',
       },
       {
         title: '昵称',
         dataIndex: 'nickName',
         key: 'nickName',
-        width: '25%',
+        width: '15%',
         // ellipsis: true
       },
       {
@@ -59,7 +63,7 @@ export default {
         title: '电子邮箱',
         dataIndex: 'email',
         key: 'email',
-        width: '28%',
+        width: '25%',
       },
       {
         title: '发布活动综合评分',
@@ -74,6 +78,12 @@ export default {
         scopedSlots: {customRender: 'gender'},
         width: '7%',
       },
+      {
+		title: '操作',
+		key: 'action',
+		scopedSlots: { customRender: 'action' },
+		width: '20%',
+      }
     ],
     src: ''
   }),
@@ -91,10 +101,12 @@ export default {
             that.$message.error('获取用户失败')
           })
     },
+	routeToAuth(userId) {
+		this.$router.push('/asr-user-auth/' + userId)
+	}
   },
   mounted () {
     this.getUserList()
-    // console.log(this.feedback)
   }
 }
 

@@ -20,6 +20,8 @@ import TypeCommission from "../view/TypeCommission";
 import TypeCommissionDetail from "../view/TypeCommissionDetail";
 import TypeTopic from "../view/TypeTopic";
 import TypeTopicDetail from "../view/TypeTopicDetail";
+import Auth from "../view/Auth"
+
 const routes = [
 	{
 		path: '/',
@@ -71,6 +73,12 @@ const routes = [
 		name: 'asr-users',
 		meta: {requireAuth : true},
 		component: UserList
+	},
+	{
+		path: '/asr-user-auth/:userId',
+		name: 'asr-user-auth',
+		meta: {requireAuth : true},
+		component: Auth
 	},
 	{
 		path: '/asr-feedbacks',
