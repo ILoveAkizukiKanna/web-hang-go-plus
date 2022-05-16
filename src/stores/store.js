@@ -18,6 +18,8 @@ import TypeCommissionDetail from "./modules/typeCommissionDetail";
 import TypeTopic from "./modules/typeTopic";
 import TypeTopicDetail from "./modules/typeTopicDetail";
 import Auth from "./modules/auth"
+import Appeal from "./modules/appeal"
+import AppealDetail from "./modules/appealDetail"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -39,5 +41,7 @@ export default new Vuex.Store({
 		typeTopic:TypeTopic,
 		typeTopicDetail:TypeTopicDetail,
 		auth: Auth,
+		appeal:Appeal,
+		appealDetail: AppealDetail,
 	}
 })
