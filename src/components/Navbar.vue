@@ -36,6 +36,8 @@
 				<a-menu-item key="5">待审核用户</a-menu-item>
 				<a-menu-item key="6">用户反馈</a-menu-item>
 				<a-menu-item key="7">所有用户</a-menu-item>
+        <a-menu-item key="15">举报审核</a-menu-item>
+        <a-menu-item key="16">申诉审核</a-menu-item>
 			</a-sub-menu>
 			
 		</a-menu>
@@ -62,7 +64,9 @@ export default {
 			'11': ['11'],
 			'12': ['11'],
 			'13': ['8'],
-			'14': ['11']
+			'14': ['11'],
+      '15': ['4'],
+      '16': ['4'],
 		}
 		this.currentOpen = this.myMap[this.current]
 		return {
@@ -76,7 +80,9 @@ export default {
 				'9': '/asr-commission/applied/commission',
 				'12': '/asr-topic/topics',
 				'13': '/asr-commission/type/commission',
-				'14': '/asr-topic/type/topic'
+				'14': '/asr-topic/type/topic',
+        '15': '/asr-user-manage/complaint',
+        '16': '/asr-user-manage/appeal'
 			},
 			myCurrent : this.current,
 			myOpen: this.myOpen
