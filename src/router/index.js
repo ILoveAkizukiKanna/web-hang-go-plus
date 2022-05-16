@@ -21,9 +21,10 @@ import TypeCommissionDetail from "../view/TypeCommissionDetail";
 import TypeTopic from "../view/TypeTopic";
 import TypeTopicDetail from "../view/TypeTopicDetail";
 import Auth from "../view/Auth"
-import Complaint from "../view/Complaint";
+import Complaints from "../view/Complaints";
 import Appeal from "../view/Appeal";
 import AppealDetail from "../view/AppealDetail"
+import Complaint from "../view/Complaint";
 
 const routes = [
 	{
@@ -136,6 +137,12 @@ const routes = [
 		name: 'asr-topic-type-topic-detail',
 		meta: {requireAuth : true},
 		component: TypeTopicDetail
+	},
+	{
+		path: '/asr-user-manage/complaints',
+		name: 'asr-user-manage-complaints',
+		meta: {requireAuth : true},
+		component: Complaints
 	},
 	{
 		path: '/asr-user-manage/complaint',
