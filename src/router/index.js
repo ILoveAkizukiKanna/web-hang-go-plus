@@ -23,6 +23,7 @@ import TypeTopicDetail from "../view/TypeTopicDetail";
 import Auth from "../view/Auth"
 import Complaints from "../view/Complaints";
 import Appeal from "../view/Appeal";
+import AppealDetail from "../view/AppealDetail"
 import Complaint from "../view/Complaint";
 
 const routes = [
@@ -154,6 +155,12 @@ const routes = [
 		name: 'asr-user-manage-appeal',
 		meta: {requireAuth : true},
 		component: Appeal
+	},
+	{
+		path: '/asr-user-manage/appeal/detail:detailId',
+		name: 'asr-user-manage-appeal-detail',
+		meta: {requireAuth : true},
+		component: AppealDetail
 	},
 	{
 		path: '/404',
