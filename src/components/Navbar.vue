@@ -81,7 +81,7 @@ export default {
 				'12': '/asr-topic/topics',
 				'13': '/asr-commission/type/commission',
 				'14': '/asr-topic/type/topic',
-        '15': '/asr-user-manage/complaint',
+        '15': '/asr-user-manage/complaints',
         '16': '/asr-user-manage/appeal'
 			},
 			myCurrent : this.current,

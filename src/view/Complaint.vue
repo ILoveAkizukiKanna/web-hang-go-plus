@@ -2,114 +2,178 @@
   <div class="h-full">
     <a-row class="h-full">
       <a-col span="3" class="h-full" style="width: 250px">
-        <Navbar class="w-auto" default-selected-key="7"></Navbar>
+        <Navbar class="w-auto"></Navbar>
       </a-col>
       <a-col style="background-color: #f0f2f5;overflow-y: auto;margin-left: 220px" class="h-full">
-        <Header></Header>
-        <div style="margin: 24px">
-          <a-table :columns="columns"
-                   :data-source="userList"
-                   rowKey="id"
-                   class="w-auto"
-          >
-            <span slot="customTitle">用户id</span>
-            <span slot="gender" slot-scope="gender">{{gender === 0 ? '未知' : gender === 1 ? '男' : '女'}}</span>
-            <span slot="avatarUrl" slot-scope="avatarUrl"><img :src="avatarUrl" alt="无"/></span>
+        <Header :is-back="true" back-comments="返回用户列表"></Header>
+        <div v-if="loaded">
+          <a-page-header>
+            <a-card class="mb-3">
+              <a-descriptions title="举报人信息">
+                <a-descriptions-item label="用户ID">{{ complaintInfo.user.id }}</a-descriptions-item>
+                <a-descriptions-item label="用户昵称">{{ complaintInfo.user.nickName }}</a-descriptions-item>
+                <a-descriptions-item label="用户头像">
+                  <div class="flex flex-row flex-wrap" v-if="authInfo.hasPhoto">
+                    <div class="w-1/3 px-2">
+                      <div class="h-72 bg-gray-100 border">
+                        <img class="object-contain w-full h-full" :src="authInfo.avatarUrl"  alt=" "/>
+                      </div>
+                    </div>
+                  </div>
+                </a-descriptions-item>
+              </a-descriptions>
+            </a-card>
+            <a-card class="mb-3">
+              <a-descriptions title="被举报人信息">
+                <a-descriptions-item label="用户ID">{{ complaintInfo.to_user.id }}</a-descriptions-item>
+                <a-descriptions-item label="用户昵称">{{ complaintInfo.to_user.nickName }}</a-descriptions-item>
+                <a-descriptions-item label="用户头像">
+                  <div class="flex flex-row flex-wrap" v-if="authInfo.hasPhoto">
+                    <div class="w-1/3 px-2">
+                      <div class="h-72 bg-gray-100 border">
+                        <img class="object-contain w-full h-full" :src="authInfo.avatarUrl"  alt=" "/>
+                      </div>
+                    </div>
+                  </div>
+                </a-descriptions-item>
+              </a-descriptions>
+            </a-card>
+<!--            <a-card class="mb-3">-->
+<!--              <a-descriptions title="用户头像"></a-descriptions>-->
+<!--              <div class="flex flex-row flex-wrap" v-if="authInfo.hasPhoto">-->
+<!--                <div class="w-1/3 px-2">-->
+<!--                  <div class="h-72 bg-gray-100 border">-->
+<!--                    <img class="object-contain w-full h-full" :src="authInfo.avatarUrl"  alt=" "/>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <p v-else>无</p>-->
+<!--            </a-card>-->
+            <a-card class='mb-3'>
+              <a-descriptions title="举报人信息">
+                <a-descriptions-item label="举报权限">{{complaintInfo.authority === 0 ? '发布话题' :
+                                                      complaintInfo.authority === 1 ? '发布评论' :
+                                                      complaintInfo.authority === 2 ? '发布委托' :
+                                                      complaintInfo.authority === 3 ? '接取委托' : 'error!'}}</a-descriptions-item>
+                <a-descriptions-item label="举报时间">{{ complaintInfo.create_time }}</a-descriptions-item>
+                <a-descriptions-item label="举报理由">{{ complaintInfo.reason}}</a-descriptions-item>
+              </a-descriptions>
+            </a-card>
 
-            <span slot="action" slot-scope="text, record">
-				<a style="color: #00A0E9" @click="routeToAuth(record.id)">管理用户权限</a>
-			</span>
-          </a-table>
+            <div class="w-full h-16">
+              <div class="w-1/2 h-full space-x-4">
+                <button
+                    class="w-1/5 h-full text-lg ant-btn-primary focus:border-0"
+                    @click="Pass(complaintInfo.id)"
+                >通过</button>
+                <a-spin size="large" :spinning="spinning" />
+              </div>
+              <div class="w-1/2 h-full space-x-4">
+                <button
+                    class="w-1/5 h-full text-lg ant-btn-danger focus:border-0"
+                    @click="notPass(complaintInfo.id)"
+                >驳回</button>
+                <a-spin size="large" :spinning="spinning" />
+              </div>
+            </div>
+          </a-page-header>
         </div>
       </a-col>
     </a-row>
   </div>
 </template>
 
+
 <script>
 import Navbar from "../components/Navbar";
 import Header from "../components/Header";
 import {mapState} from 'vuex'
 export default {
-  name: "UserList",
+  name: "Complaint",
   components: {
     Navbar,
     Header
   },
-  data: () => ({
-    columns: [
-      {
-        dataIndex: 'id',
-        key: 'id',
-        slots: {title: 'customTitle'},
-        scopedSlots: {customRender: 'id'},
-        width: '8%',
-      },
-      {
-        title: '昵称',
-        dataIndex: 'nickName',
-        key: 'nickName',
-        width: '15%',
-        // ellipsis: true
-      },
-      {
-        title: '用户头像',
-        dataIndex: 'avatarUrl',
-        key: 'avatarUrl',
-        scopedSlots: {customRender: 'avatarUrl'},
-        width: '10%',
-      },
-      {
-        title: '电子邮箱',
-        dataIndex: 'email',
-        key: 'email',
-        width: '25%',
-      },
-      {
-        title: '发布活动综合评分',
-        key: 'avg_score',
-        dataIndex: 'avg_score',
-        width: '15%',
-      },
-      {
-        title: '性别',
-        key: 'gender',
-        dataIndex: 'gender',
-        scopedSlots: {customRender: 'gender'},
-        width: '7%',
-      },
-      {
-        title: '操作',
-        key: 'action',
-        scopedSlots: { customRender: 'action' },
-        width: '20%',
-      }
-    ],
-    src: ''
-  }),
+  data () {
+    return {
+      loaded: false,
+      spinning: false,
+    }
+  },
   computed: {
     ...mapState({
-      userList: state => state.userList.userList
+      complaintInfo: state => state.complaint.complaintInfo,
     })
   },
   methods: {
-    getUserList() {
-      const that = this
-      this.$store.dispatch('GET_USER_LIST')
-          .catch(() => {
-            // console.log(err)
-            that.$message.error('获取用户失败')
-          })
+    onClickBack () {
+      this.$router.back()
     },
-    routeToAuth(userId) {
-      this.$router.push('/asr-user-auth/' + userId)
+    getInfo () {
+      this.loaded = true
+      const that = this
+      this.$store.dispatch('GET_COMPLAINT_INFO', {
+        complaintId: that.$route.params.complaintId
+      }).catch(() => {
+        that.$message.error('加载用户权限信息失败')
+        that.loaded = false
+      }).then(() => {
+        that.loaded = false
+      })
+    },
+    notPass (complainId) {
+      const that = this
+      this.$confirm({
+        title: '确定驳回改用户的举报吗？',
+        okText: '确定',
+        okType: 'info',
+        cancelText: '取消',
+        onOk () {
+          that.spinning = true
+          that.$store.dispatch('NOT_PASS_COMPLAINT', {
+            complainId: complainId
+          }).then(data => {
+            if (data) {
+              that.spinning = false
+              that.$message.success('操作成功')
+              that.$router.back()
+            }
+          }).catch(() => {
+            that.spinning = false
+            that.$message.error('操作失败')
+          })
+        }
+      })
+    },
+    pass (complainId) {
+      const that = this
+      this.$confirm({
+        title: '确定通过改用户的举报吗？',
+        okText: '确定',
+        okType: 'info',
+        cancelText: '取消',
+        onOk () {
+          that.spinning = true
+          that.$store.dispatch('PASS_COMPLAINT', {
+            complainId: complainId
+          }).then(data => {
+            if (data) {
+              that.spinning = false
+              that.$message.success('操作成功')
+              that.$router.back()
+            }
+          }).catch(() => {
+            that.spinning = false
+            that.$message.error('操作失败')
+          })
+        }
+      })
     }
   },
-  mounted () {
-    this.getUserList()
+  mounted() {
+    this.getInfo()
   }
 }
-
 </script>
 
 <style scoped>
