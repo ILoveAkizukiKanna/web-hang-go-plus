@@ -58,22 +58,22 @@ export default {
         width: '10%',
       },
       {
-		title: '申诉原因',
-		dataIndex: 'reason',
-		key: 'reason',
-		width: '30%',
+        title: '申诉原因',
+        dataIndex: 'reason',
+        key: 'reason',
+        width: '30%',
       },
       {
-		title: '申请权限',
-		dataIndex: 'auth',
-		key: 'auth',
-		width: '15%',
-      }
+        title: '申请权限',
+        dataIndex: 'auth',
+        key: 'auth',
+        width: '15%',
+      },
       {
-  		title: '操作',
-  		key: 'action',
-  		scopedSlots: { customRender: 'action' },
-  		width: '20%',
+        title: '操作',
+        key: 'action',
+        scopedSlots: { customRender: 'action' },
+        width: '20%',
       }
     ],
     src: ''
@@ -84,6 +84,9 @@ export default {
     })
   },
   methods: {
+    routeToDetail(appealId) {
+      this.$router.push('/asr-user-manage/appeal/detail/' + appealId)
+    },
     getAppealList() {
       const that = this
       this.$store.dispatch('GET_APPEAL_LIST')
@@ -92,9 +95,6 @@ export default {
             that.$message.error('获取申诉列表失败')
           })
     },
-  	routeToDetail(appealId) {
-  		this.$router.push('/asr-user-manage/appeal/detail/' + appealId)
-  	}
   },
   mounted () {
     this.getAppealList()

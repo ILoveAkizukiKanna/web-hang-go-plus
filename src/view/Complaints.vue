@@ -18,9 +18,9 @@
                                                             authority === 1 ? '发布评论' :
                                                             authority === 2 ? '发布委托' :
                                                             authority === 3 ? '接取委托' : 'error!'}}</span>
-            <span slot="action" slot-scope="text, record">
-				<a style="color: #00A0E9" @click="routeToAuth(record.id)">举报详情</a>
-			</span>
+            <span slot="action" slot-scope="record">
+              <a style="color: #00A0E9" @click="routeToComplaint(record.id)">举报详情</a>
+            </span>
           </a-table>
         </div>
       </a-col>
@@ -41,22 +41,28 @@ export default {
   data: () => ({
     columns: [
       {
+        title: '序号',
         dataIndex: 'id',
         key: 'id',
+        width: '4%',
+      },
+      {
+        dataIndex: 'user.id',
+        key: 'userid',
         slots: {title: 'customTitle'},
-        scopedSlots: {customRender: 'id'},
-        width: '8%',
+        scopedSlots: {customRender: 'userid'},
+        width: '4%',
       },
       {
         title: '昵称',
-        dataIndex: 'nickName',
+        dataIndex: 'user.nickName',
         key: 'nickName',
         width: '15%',
         // ellipsis: true
       },
       {
         title: '用户头像',
-        dataIndex: 'avatarUrl',
+        dataIndex: 'user.avatarUrl',
         key: 'avatarUrl',
         scopedSlots: {customRender: 'avatarUrl'},
         width: '10%',
@@ -103,12 +109,15 @@ export default {
             that.$message.error('获取用户失败')
           })
     },
-    routeToAuth(complaintId) {
+    routeToComplaint(complaintId) {
+      console.log(complaintId)
       this.$router.push('/asr-user-manage/complaint' + complaintId)
-    }
+    },
   },
   mounted () {
     this.getInfo()
+    // console.log(this.complaintList)
+    // console.log(this.complaintList[0].id)
   }
 }
 

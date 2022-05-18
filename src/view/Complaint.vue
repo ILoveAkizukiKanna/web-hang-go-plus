@@ -13,10 +13,10 @@
                 <a-descriptions-item label="用户ID">{{ complaintInfo.user.id }}</a-descriptions-item>
                 <a-descriptions-item label="用户昵称">{{ complaintInfo.user.nickName }}</a-descriptions-item>
                 <a-descriptions-item label="用户头像">
-                  <div class="flex flex-row flex-wrap" v-if="authInfo.hasPhoto">
+                  <div class="flex flex-row flex-wrap" v-if="complaintInfo.user.hasPhoto">
                     <div class="w-1/3 px-2">
                       <div class="h-72 bg-gray-100 border">
-                        <img class="object-contain w-full h-full" :src="authInfo.avatarUrl"  alt=" "/>
+                        <img class="object-contain w-full h-full" :src="complaintInfo.user.avatarUrl"  alt=" "/>
                       </div>
                     </div>
                   </div>
@@ -28,10 +28,10 @@
                 <a-descriptions-item label="用户ID">{{ complaintInfo.to_user.id }}</a-descriptions-item>
                 <a-descriptions-item label="用户昵称">{{ complaintInfo.to_user.nickName }}</a-descriptions-item>
                 <a-descriptions-item label="用户头像">
-                  <div class="flex flex-row flex-wrap" v-if="authInfo.hasPhoto">
+                  <div class="flex flex-row flex-wrap" v-if="complaintInfo.to_user.hasPhoto">
                     <div class="w-1/3 px-2">
                       <div class="h-72 bg-gray-100 border">
-                        <img class="object-contain w-full h-full" :src="authInfo.avatarUrl"  alt=" "/>
+                        <img class="object-contain w-full h-full" :src="complaintInfo.to_user.avatarUrl"  alt=" "/>
                       </div>
                     </div>
                   </div>
@@ -171,7 +171,10 @@ export default {
     }
   },
   mounted() {
+    console.log(this.$route.params.complaintId)
     this.getInfo()
+    console.log('userid')
+    console.log(this.complaintInfo)
   }
 }
 </script>

@@ -23,7 +23,7 @@ import TypeTopicDetail from "../view/TypeTopicDetail";
 import Auth from "../view/Auth"
 import Complaints from "../view/Complaints";
 import Appeal from "../view/Appeal";
-import AppealDetail from "../view/AppealDetail"
+import AppealDetail from "../view/AppealDetail";
 import Complaint from "../view/Complaint";
 
 const routes = [
@@ -145,7 +145,7 @@ const routes = [
 		component: Complaints
 	},
 	{
-		path: '/asr-user-manage/complaint',
+		path: '/asr-user-manage/complaint:complaintId',
 		name: 'asr-user-manage-complaint',
 		meta: {requireAuth : true},
 		component: Complaint

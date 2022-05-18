@@ -13,7 +13,7 @@ export default {
 				nickName: info.user.nickName,
 				avatarUrl: info.user.url,
 				authority: info.authority,
-				auth: info.authority == 0 ? "发布话题" :(m.authority == 1 ? "发布评论" :(m.authority == 2 ? "发布委托" : "接取委托")),
+				auth: info.authority == 0 ? "发布话题" :(info.authority == 1 ? "发布评论" :(info.authority == 2 ? "发布委托" : "接取委托")),
 				create_time:info.create_time,
 				reason:info.reason,
 				key: info.id
@@ -48,7 +48,7 @@ export default {
 					url: '/appeal/save/',
 					method: 'delete',
 					data: {
-						id: appealId,
+						id: payload.appealId,
 						reason: payload.reason
 					}
 				}).then(() => {
@@ -65,7 +65,7 @@ export default {
 					url: '/appeal/save/',
 					method: 'post',
 					data: {
-						id: appealId,
+						id: payload.appealId,
 					}
 				}).then(() => {
 					commit('APPEAL_DETAIL_NOP')
