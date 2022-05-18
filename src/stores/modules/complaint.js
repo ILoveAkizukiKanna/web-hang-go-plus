@@ -7,6 +7,11 @@ export default {
     mutations: {
         SET_COMPLAINT_INFO: (state, payload) => {
             state.complaintInfo = payload.complaintInfo
+			// let info = payload.complaintInfo
+			// state.complaintInfo = {
+			// 	id : info.id,
+			// 	key: info.id
+			// }
         },
         PASS: () => {
 
@@ -28,7 +33,6 @@ export default {
                     commit('SET_COMPLAINT_INFO', {
                         complaintInfo: response
                     })
-                    console.log(this.state.complaintInfo)
                     resolve(true)
                 }).catch(err => {
                     reject(err)

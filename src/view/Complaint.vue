@@ -38,17 +38,6 @@
                 </a-descriptions-item>
               </a-descriptions>
             </a-card>
-<!--            <a-card class="mb-3">-->
-<!--              <a-descriptions title="用户头像"></a-descriptions>-->
-<!--              <div class="flex flex-row flex-wrap" v-if="authInfo.hasPhoto">-->
-<!--                <div class="w-1/3 px-2">-->
-<!--                  <div class="h-72 bg-gray-100 border">-->
-<!--                    <img class="object-contain w-full h-full" :src="authInfo.avatarUrl"  alt=" "/>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <p v-else>无</p>-->
-<!--            </a-card>-->
             <a-card class='mb-3'>
               <a-descriptions title="举报人信息">
                 <a-descriptions-item label="举报权限">{{complaintInfo.authority === 0 ? '发布话题' :
@@ -109,18 +98,16 @@ export default {
     onClickBack () {
       this.$router.back()
     },
-    async getInfo () {
-      this.loaded = true
+    getInfo () {
+      this.loaded = false
       const that = this
-      await this.$store.dispatch('GET_COMPLAINT_INFO', {
+      this.$store.dispatch('GET_COMPLAINT_INFO', {
         complaintId: that.$route.params.complaintId
       }).catch(() => {
         that.$message.error('加载用户权限信息失败')
-        that.loaded = false
+        that.loaded = true
       }).then(() => {
-        that.loaded = false
-
-
+        that.loaded = true
         console.log('userid')
         console.log(that.complaintInfo)
       })
@@ -175,9 +162,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$route.params.complaintId)
     this.getInfo()
-
   }
 }
 </script>

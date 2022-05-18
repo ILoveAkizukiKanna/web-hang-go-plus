@@ -11,7 +11,8 @@ export default {
 				id: info.id,
 				userId: info.user.id,
 				nickName: info.user.nickName,
-				avatarUrl: info.user.url,
+				avatarUrl: info.user.avatarUrl,
+				hasPhoto: info.user.avatarUrl == "" ? false : true,
 				authority: info.authority,
 				auth: info.authority == 0 ? "发布话题" :(info.authority == 1 ? "发布评论" :(info.authority == 2 ? "发布委托" : "接取委托")),
 				create_time:info.create_time,
@@ -31,13 +32,12 @@ export default {
 						
 					}
 				}).then(response => {
-
+					console.log(response)
 					commit('SET_APPEAL_DETAIL', {
 						appealDetail: response
 					})
 					resolve(true)
 				}).catch(err => {
-					// console.log(err)
 					reject(err)
 				})
 			})

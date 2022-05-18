@@ -85,7 +85,8 @@ export default {
   },
   methods: {
     routeToDetail(appealId) {
-      this.$router.push('/asr-user-manage/appeal/detail/' + appealId)
+		console.log(appealId)
+      this.$router.push('/asr-user-manage/appeal/detail' + appealId)
     },
     getAppealList() {
       const that = this

@@ -11,7 +11,7 @@
 						<a-card class="mb-3">
 							<a-descriptions title="用户申诉信息">
 								<a-descriptions-item label="用户ID">{{ appealDetail.id }}</a-descriptions-item>
-								<a-descriptions-item label="用户昵称">{{ appealDetail.name }}</a-descriptions-item>
+								<a-descriptions-item label="用户昵称">{{ appealDetail.nickName }}</a-descriptions-item>
 								<a-descriptions-item label="申诉原因">{{ appealDetail.reason}}</a-descriptions-item>
 								<a-descriptions-item label="申请权限">{{ appealDetail.auth}}</a-descriptions-item>
 							</a-descriptions>

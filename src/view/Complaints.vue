@@ -116,8 +116,6 @@ export default {
   },
   mounted () {
     this.getInfo()
-    // console.log(this.complaintList)
-    // console.log(this.complaintList[0].id)
   }
 }
 

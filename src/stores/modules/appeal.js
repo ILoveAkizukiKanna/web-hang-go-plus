@@ -28,7 +28,7 @@ export default {
 							id: m.id,
 							userId: m.user.id,
 							nickName: m.user.nickName,
-							avatarUrl: m.user.url,
+							avatarUrl: m.user.avatarUrl,
 							authority: m.authority,
 							auth: m.authority == 0 ? "发布话题" :(m.authority == 1 ? "发布评论" :(m.authority == 2 ? "发布委托" : "接取委托")),
 							create_time:m.create_time,

@@ -157,7 +157,7 @@ const routes = [
 		component: Appeal
 	},
 	{
-		path: '/asr-user-manage/appeal/detail:detailId',
+		path: '/asr-user-manage/appeal/detail:appealId',
 		name: 'asr-user-manage-appeal-detail',
 		meta: {requireAuth : true},
 		component: AppealDetail
