@@ -91,9 +91,9 @@ export default {
 				userId: that.$route.params.userId
 			}).catch(() => {
 				that.$message.error('加载用户权限信息失败')
-				
 			}).then(() => {
 				that.loaded = true
+				console.log(that.authInfo)
 			})
 		},
 		change1() {
@@ -110,39 +110,45 @@ export default {
 		},
 		notPassCheck (userId) {
 			let bit  =  this.authInfo.releaseTopic + this.authInfo.releaseComment + this.authInfo.releaseCommission + this.authInfo.acceptCommission
+			const replaceStr1 = (str, index, char) => {
+				const strAry = str.split('');
+				strAry[index] = char;
+				return strAry.join('');
+			}
 			if (this.auth1) {
 				let tmp = bit[0]
 				if (tmp == "1") {
-					bit.replace(0, "0")
+					bit = replaceStr1(bit, 0, "0")
 				} else {
-					bit.replace(0, "1")
+					bit = replaceStr1(bit, 0, "1")
 				}
 			}
 			if (this.auth2) {
 				let tmp = bit[1]
 				if (tmp == "1") {
-					bit.replace(1, "0")
+					bit = replaceStr1(bit, 1, "0")
 				} else {
-					bit.replace(1, "1")
+					bit = replaceStr1(bit, 1, "1")
 				}
 			}
 			if (this.auth3) {
 				let tmp = bit[2]
 				if (tmp == "1") {
-					bit.replace(2, "0")
+					bit = replaceStr1(bit, 2, "0")
 				} else {
-					bit.replace(2, "1")
+					bit = replaceStr1(bit, 2, "1")
 				}
 			}
 			if (this.auth4) {
 				let tmp = bit[3]
 				if (tmp == "1") {
-					bit.replace(3, "0")
+					bit = replaceStr1(bit, 3, "0")
 				} else {
-					bit.replace(3, "1")
+					bit = replaceStr1(bit, 3, "1")
 				}
 			}
-			
+			console.log(this.auth2)
+			console.log(bit)
 			const that = this
 			this.$confirm({
 				title: '确定修改该用户的权限吗？',
