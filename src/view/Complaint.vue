@@ -109,16 +109,20 @@ export default {
     onClickBack () {
       this.$router.back()
     },
-    getInfo () {
+    async getInfo () {
       this.loaded = true
       const that = this
-      this.$store.dispatch('GET_COMPLAINT_INFO', {
+      await this.$store.dispatch('GET_COMPLAINT_INFO', {
         complaintId: that.$route.params.complaintId
       }).catch(() => {
         that.$message.error('加载用户权限信息失败')
         that.loaded = false
       }).then(() => {
         that.loaded = false
+
+
+        console.log('userid')
+        console.log(that.complaintInfo)
       })
     },
     notPass (complainId) {
@@ -173,8 +177,7 @@ export default {
   mounted() {
     console.log(this.$route.params.complaintId)
     this.getInfo()
-    console.log('userid')
-    console.log(this.complaintInfo)
+
   }
 }
 </script>

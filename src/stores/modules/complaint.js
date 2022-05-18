@@ -25,8 +25,6 @@ export default {
                     data: {
                     },
                 }).then(response => {
-                    console.log('response:')
-                    console.log(response)
                     commit('SET_COMPLAINT_INFO', {
                         complaintInfo: response
                     })
