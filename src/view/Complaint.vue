@@ -57,10 +57,22 @@
                 >通过</button>
                 <button
                   class="w-1/5 h-full text-lg ant-btn-danger focus:border-0"
-                  @click="notPass(complaintInfo.id)"
+                  @click="showModal()"
                 >驳回</button>
                 <a-spin size="large" :spinning="spinning" />
               </div>
+            </div>
+
+            <div>
+              <a-modal v-model="visible" title="驳回举报">
+                <template #footer>
+                  <a-button key="submit" type="primary" :loading="loading" @click="notPass(complaintInfo.id)">提交</a-button>
+                </template>
+                <div>
+                  <h5>输入驳回理由</h5><br>
+                  <a-input v-model="reason" placeholder="类别名称" />
+                </div>
+              </a-modal>
             </div>
           </a-page-header>
         </div>
@@ -84,6 +96,9 @@ export default {
     return {
       loaded: false,
       spinning: false,
+
+      visible: false,
+      reason: ''
     }
   },
   computed: {
@@ -109,7 +124,10 @@ export default {
         console.log(that.complaintInfo)
       })
     },
-    notPass (complainId) {
+    showModal () {
+      this.visible = true
+    },
+    notPass (complaintId) {
       const that = this
       this.$confirm({
         title: '确定驳回改用户的举报吗？',
@@ -119,7 +137,8 @@ export default {
         onOk () {
           that.spinning = true
           that.$store.dispatch('NOT_PASS_COMPLAINT', {
-            complainId: complainId
+            complaintId: complaintId,
+            reason: that.reason
           }).then(data => {
             if (data) {
               that.spinning = false
@@ -133,7 +152,7 @@ export default {
         }
       })
     },
-    pass (complainId) {
+    pass (complaintId) {
       const that = this
       this.$confirm({
         title: '确定通过改用户的举报吗？',
@@ -143,7 +162,7 @@ export default {
         onOk () {
           that.spinning = true
           that.$store.dispatch('PASS_COMPLAINT', {
-            complainId: complainId
+            complaintId: complaintId
           }).then(data => {
             if (data) {
               that.spinning = false

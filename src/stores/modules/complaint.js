@@ -40,10 +40,11 @@ export default {
             })
         },
         PASS_COMPLAINT: ({ commit }, payload) => {
+            console.log(payload.complaintId)
             return new Promise((resolve, reject) => {
                 request({
-                    url: 'inform/save/',
-                    method: 'pass',
+                    url: 'informSave/',
+                    method: 'post',
                     data: {
                         id: payload.complaintId,
                     }
@@ -60,10 +61,11 @@ export default {
         NOT_PASS_COMPLAINT: ({ commit }, payload) => {
             return new Promise((resolve, reject) => {
                 request({
-                    url: 'inform/save/',
+                    url: 'informSave/',
                     method: 'delete',
                     data: {
                         id: payload.complaintId,
+                        reason: payload.reason,
                     }
                 }).then(() => {
                     // console.log(response)
