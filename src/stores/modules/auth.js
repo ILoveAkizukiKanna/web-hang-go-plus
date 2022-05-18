@@ -6,11 +6,11 @@ export default {
 	},
 	mutations: {
 		SET_AUTH: (state, payload) => {
-			let info = payload.userId
+			let info = payload.authInfo
 			state.authInfo = {
 				id: info.id,
-				name: info.nickname,
-				hasPhoto: info.avatarUrl !== '',
+				name: info.nickName,
+				hasPhoto: info.avatarUrl == '' ? false : true,
 				avatarUrl: info.avatarUrl,
 				releaseTopic: info.authority[0],
 				releaseComment: info.authority[1],
@@ -30,7 +30,7 @@ export default {
 					url: 'users_admin/user_authority/',
 					method: 'post',
 					data: {
-						userId : payload.userId
+						id : payload.userId
 					},
 				}).then(response => {
 					console.log(response)
@@ -49,8 +49,8 @@ export default {
 					url: 'users_admin/change_authority/',
 					method: 'post',
 					data: {
+						authority: payload.bit,
 						id: payload.userId,
-						bit: payload.bit
 					}
 				}).then(() => {
 					// console.log(response)

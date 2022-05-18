@@ -32,7 +32,6 @@ export default {
 						
 					}
 				}).then(response => {
-					console.log(response)
 					commit('SET_APPEAL_DETAIL', {
 						appealDetail: response
 					})
@@ -45,7 +44,7 @@ export default {
 		NOT_PASS_APPEAL: ({ commit }, payload) => {
 			return new Promise((resolve, reject) => {
 				request({
-					url: '/appeal/save/',
+					url: '/appealSave/',
 					method: 'delete',
 					data: {
 						id: payload.appealId,
@@ -62,7 +61,7 @@ export default {
 		PASS_APPEAL: ({ commit }, payload) => {
 			return new Promise((resolve, reject) => {
 				request({
-					url: '/appeal/save/',
+					url: '/appealSave/',
 					method: 'post',
 					data: {
 						id: payload.appealId,

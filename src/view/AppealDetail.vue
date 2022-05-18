@@ -41,12 +41,12 @@
 							<div class="w-1/2 h-full space-x-4">
 								<button
 									class="w-1/5 h-full text-lg ant-btn-danger focus:border-0"
-									@click="notPassCheck(authInfo.id)"
+									@click="notPassCheck(appealDetail.id)"
 								>驳回</button>
 								<a-spin size="large" :spinning="spinning" />
 								<button
 									class="w-1/5 h-full text-lg ant-btn-danger focus:border-0"
-									@click="PassCheck(authInfo.id)"
+									@click="PassCheck(appealDetail.id)"
 								>通过</button>
 								<a-spin size="large" :spinning="spinning" />
 							</div>
