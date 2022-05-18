@@ -43,7 +43,7 @@ export default {
             return new Promise((resolve, reject) => {
                 request({
                     url: 'inform/save/',
-                    method: 'delete',
+                    method: 'pass',
                     data: {
                         id: payload.complaintId,
                     }
@@ -61,7 +61,7 @@ export default {
             return new Promise((resolve, reject) => {
                 request({
                     url: 'inform/save/',
-                    method: 'post',
+                    method: 'delete',
                     data: {
                         id: payload.complaintId,
                     }

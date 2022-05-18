@@ -12,30 +12,30 @@
               <a-descriptions title="举报人信息">
                 <a-descriptions-item label="用户ID">{{ complaintInfo.user.id }}</a-descriptions-item>
                 <a-descriptions-item label="用户昵称">{{ complaintInfo.user.nickName }}</a-descriptions-item>
-                <a-descriptions-item label="用户头像">
-                  <div class="flex flex-row flex-wrap" v-if="complaintInfo.user.hasPhoto">
-                    <div class="w-1/3 px-2">
-                      <div class="h-72 bg-gray-100 border">
-                        <img class="object-contain w-full h-full" :src="complaintInfo.user.avatarUrl"  alt=" "/>
-                      </div>
-                    </div>
-                  </div>
-                </a-descriptions-item>
+<!--                <a-descriptions-item label="用户头像">-->
+<!--                  <div class="flex flex-row flex-wrap" v-if="complaintInfo.user.hasPhoto">-->
+<!--                    <div class="w-1/3 px-2">-->
+<!--                      <div class="h-72 bg-gray-100 border">-->
+<!--                        <img class="object-contain w-full h-full" :src="complaintInfo.user.avatarUrl"  alt=" "/>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </a-descriptions-item>-->
               </a-descriptions>
             </a-card>
             <a-card class="mb-3">
               <a-descriptions title="被举报人信息">
                 <a-descriptions-item label="用户ID">{{ complaintInfo.to_user.id }}</a-descriptions-item>
                 <a-descriptions-item label="用户昵称">{{ complaintInfo.to_user.nickName }}</a-descriptions-item>
-                <a-descriptions-item label="用户头像">
-                  <div class="flex flex-row flex-wrap" v-if="complaintInfo.to_user.hasPhoto">
-                    <div class="w-1/3 px-2">
-                      <div class="h-72 bg-gray-100 border">
-                        <img class="object-contain w-full h-full" :src="complaintInfo.to_user.avatarUrl"  alt=" "/>
-                      </div>
-                    </div>
-                  </div>
-                </a-descriptions-item>
+<!--                <a-descriptions-item label="用户头像">-->
+<!--                  <div class="flex flex-row flex-wrap" v-if="complaintInfo.to_user.hasPhoto">-->
+<!--                    <div class="w-1/3 px-2">-->
+<!--                      <div class="h-72 bg-gray-100 border">-->
+<!--                        <img class="object-contain w-full h-full" :src="complaintInfo.to_user.avatarUrl"  alt=" "/>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </a-descriptions-item>-->
               </a-descriptions>
             </a-card>
             <a-card class='mb-3'>
@@ -53,14 +53,11 @@
               <div class="w-1/2 h-full space-x-4">
                 <button
                     class="w-1/5 h-full text-lg ant-btn-primary focus:border-0"
-                    @click="Pass(complaintInfo.id)"
+                    @click="pass(complaintInfo.id)"
                 >通过</button>
-                <a-spin size="large" :spinning="spinning" />
-              </div>
-              <div class="w-1/2 h-full space-x-4">
                 <button
-                    class="w-1/5 h-full text-lg ant-btn-danger focus:border-0"
-                    @click="notPass(complaintInfo.id)"
+                  class="w-1/5 h-full text-lg ant-btn-danger focus:border-0"
+                  @click="notPass(complaintInfo.id)"
                 >驳回</button>
                 <a-spin size="large" :spinning="spinning" />
               </div>
