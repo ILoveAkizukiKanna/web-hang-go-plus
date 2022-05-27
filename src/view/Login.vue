@@ -3,7 +3,7 @@
     <div class="bg-white w-5/6 sm:w-2/3 md:w-1/2 lg:w-2/5 mx-auto border p-8 flex flex-col items-center shadow-2xl" >
       <img src="../../public/logo.png" alt="buaa logo" class="w-5/6 lg:w-3/5" >
       <div class="text-center mt-4 mb-12 text-2xl flex-0 text-gray-600">
-        北航大学生<br/>活动发布与社交平台
+        北航大学生<br/>便民生活平台
       </div>
       <div class="w-full text-center text-md mb-3 text-gray-500 flex-0">
         管理后台
