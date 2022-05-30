@@ -87,7 +87,7 @@ export default {
 			})
     },
     routeToTopic (topicId) {
-      this.$router.push('/asr-user-auth/' + topicId)
+      this.$router.push('/asr-topic/topic/' + topicId)
     }
   },
   mounted () {

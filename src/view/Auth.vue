@@ -30,10 +30,10 @@
 							<p v-else>无</p>
 						</a-card>
 						<a-card class='mb-3'>
-							<a-checkbox :checked="auth1" @change = "change1">修改委托发布权限</a-checkbox>
-							<a-checkbox :checked="auth2" @change = "change2">修改委托接取权限</a-checkbox>
-							<a-checkbox :checked="auth3" @change = "change3">修改话题发布权限</a-checkbox>
-							<a-checkbox :checked="auth4" @change = "change4">修改评论发布权限</a-checkbox>
+							<a-checkbox :checked="auth1" @change = "change1">修改话题发布权限</a-checkbox>
+							<a-checkbox :checked="auth2" @change = "change2">修改评论发布权限</a-checkbox>
+							<a-checkbox :checked="auth3" @change = "change3">修改委托发布权限</a-checkbox>
+							<a-checkbox :checked="auth4" @change = "change4">修改委托接取权限</a-checkbox>
 
 						</a-card>
 						
