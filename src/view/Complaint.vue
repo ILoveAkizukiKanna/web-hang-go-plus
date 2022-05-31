@@ -115,13 +115,13 @@ export default {
       const that = this
       this.$store.dispatch('GET_COMPLAINT_INFO', {
         complaintId: that.$route.params.complaintId
-      }).catch(() => {
-        that.$message.error('加载用户权限信息失败')
-        that.loaded = true
       }).then(() => {
         that.loaded = true
         console.log('userid')
         console.log(that.complaintInfo)
+      }).catch(() => {
+        that.$message.error('加载用户权限信息失败')
+        that.loaded = true
       })
     },
     showModal () {
@@ -139,15 +139,15 @@ export default {
           that.$store.dispatch('NOT_PASS_COMPLAINT', {
             complaintId: complaintId,
             reason: that.reason
+          }).catch(() => {
+            that.spinning = false
+            that.$message.error('操作失败')
           }).then(data => {
             if (data) {
               that.spinning = false
               that.$message.success('操作成功')
               that.$router.back()
             }
-          }).catch(() => {
-            that.spinning = false
-            that.$message.error('操作失败')
           })
         }
       })
@@ -163,15 +163,15 @@ export default {
           that.spinning = true
           that.$store.dispatch('PASS_COMPLAINT', {
             complaintId: complaintId
+          }).catch(() => {
+            that.spinning = false
+            that.$message.error('操作失败')
           }).then(data => {
             if (data) {
               that.spinning = false
               that.$message.success('操作成功')
               that.$router.back()
             }
-          }).catch(() => {
-            that.spinning = false
-            that.$message.error('操作失败')
           })
         }
       })
