@@ -115,8 +115,8 @@ const routes = [
 		component: Topic
 	},
 	{
-		path: '/asr-commission/type/commission',
-		name: 'asr-commission-type-commission',
+		path: '/asr-commission/type/commissions',
+		name: 'asr-commission-type-commissions',
 		meta: {requireAuth : true},
 		component: TypeCommission
 	},
@@ -127,8 +127,8 @@ const routes = [
 		component: TypeCommissionDetail
 	},
 	{
-		path: '/asr-topic/type/topic',
-		name: 'asr-topic-type-topic',
+		path: '/asr-topic/type/topics',
+		name: 'asr-topic-type-topics',
 		meta: {requireAuth : true},
 		component: TypeTopic
 	},

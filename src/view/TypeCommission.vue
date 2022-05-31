@@ -53,6 +53,7 @@ import Header from "../components/Header";
 import {mapState} from 'vuex'
 export default {
   name: "TypeCommission",
+  inject: ['reload'],
   components: {
     Navbar,
     Header
@@ -115,14 +116,15 @@ export default {
       that.$store.dispatch('ADD_TYPE_COMMISSION', {
         name: that.name,
         photo: that.src
+      }).catch(() => {
+        that.$message.error('操作失败')
       }).then((data) => {
         if (data) {
           that.$message.success('操作成功')
           that.$data.visible = false
+          that.reload()
           // this.$router.push('/asr-commission/Type/commission')
         }
-      }).catch(() => {
-        that.$message.error('操作失败')
       })
     },
   },

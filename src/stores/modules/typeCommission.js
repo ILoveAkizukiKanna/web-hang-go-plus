@@ -7,7 +7,10 @@ export default {
     mutations: {
         SET_TYPE_COMMISSION: (state, payload) => {
             state.typeCommissionInfo = payload.typeCommissionInfo
-        }
+        },
+        TYPE_COMMISSION_ADD: () => {
+
+        },
     },
     actions: {
         GET_TYPE_COMMISSION: ({ commit }) => {

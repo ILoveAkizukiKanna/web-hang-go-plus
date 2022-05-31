@@ -82,6 +82,7 @@ import Header from "../components/Header";
 import {mapState} from 'vuex'
 export default {
   name: "TypeCommissionDetail",
+  inject: ['reload'],
   components: {
     Navbar,
     Header
@@ -128,13 +129,13 @@ export default {
         onOk () {
           that.$store.dispatch('DEL_TYPE_COMMISSION', {
             typeId: typeId,
+          }).catch(() => {
+            that.$message.error('操作失败')
           }).then((data) => {
             if (data) {
               that.$message.success('操作成功')
-              // this.$router.push('/asr-commission/Type/commission/')
+              that.$router.push('/asr-commission/type/commissions')
             }
-          }).catch(() => {
-            that.$message.error('操作失败')
           })
         }
       })
@@ -162,14 +163,14 @@ export default {
         name: that.typeCommissionDetailInfo.name,
         // photo: that.typeCommissionDetailInfo.photo
         photo: that.src
+      }).catch(() => {
+        that.$message.error('操作失败')
       }).then((data) => {
         if (data) {
           that.$message.success('操作成功')
           that.$data.visible = false
-          this.$router.push('/asr-commission/Type/commission')
+          that.reload()
         }
-      }).catch(() => {
-        that.$message.error('操作失败')
       })
     },
   },

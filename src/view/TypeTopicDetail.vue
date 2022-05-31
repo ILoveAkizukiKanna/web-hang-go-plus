@@ -5,7 +5,7 @@
         <Navbar class="w-auto"></Navbar>
       </a-col>
       <a-col style="background-color: #f0f2f5;overflow-y: auto;margin-left: 220px" class="h-full">
-        <Header :is-back="true" back-comments="返回委托类别列表"></Header>
+        <Header :is-back="true" back-comments="返回话题类别列表"></Header>
         <div v-if="loaded">
           <a-page-header>
             <!--						<div class="text-4xl flex-grow mb-6 text-gray-700"></div>-->
@@ -71,6 +71,7 @@ import Header from "../components/Header";
 import {mapState} from 'vuex'
 export default {
   name: "TypeTopicDetail",
+  inject: ['reload'],
   components: {
     Navbar,
     Header
@@ -117,13 +118,13 @@ export default {
         onOk() {
           that.$store.dispatch('DEL_TYPE_TOPIC', {
             typeId: typeId,
+          }).catch(() => {
+            that.$message.error('操作失败')
           }).then((data) => {
             if (data) {
               that.$message.success('操作成功')
-              // this.$router.push('/asr-topic/type/topic')
+              that.$router.push('/asr-topic/type/topics')
             }
-          }).catch(() => {
-            that.$message.error('操作失败')
           })
         }
       })
@@ -150,14 +151,14 @@ export default {
         name: that.typeTopicDetailInfo.name,
         // photo: that.typeCommissionDetailInfo.photo
         photo: that.src
+      }).catch(() => {
+        that.$message.error('操作失败')
       }).then((data) => {
         if (data) {
           that.$message.success('操作成功')
           that.$data.visible = false
-          this.$router.push('/asr-topic/type/topic')
+          that.reload()
         }
-      }).catch(() => {
-        that.$message.error('操作失败')
       })
     },
   },

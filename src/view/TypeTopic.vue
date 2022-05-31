@@ -53,6 +53,7 @@ import Header from "../components/Header";
 import {mapState} from 'vuex'
 export default {
   name: "TypeTopic",
+  inject: ['reload'],
   components: {
     Navbar,
     Header
@@ -118,14 +119,15 @@ export default {
       that.$store.dispatch('ADD_TYPE_TOPIC', {
         name: that.name,
         photo: that.src
+      }).catch(() => {
+        that.$message.error('操作失败')
       }).then((data) => {
         if (data) {
           that.$message.success('操作成功')
           that.$data.visible = false
-          // this.$router.push('/asr-commission/Type/commission')
+          that.reload()
+          // this.$router.push('/asr-commission/Type/commissions')
         }
-      }).catch(() => {
-        that.$message.error('操作失败')
       })
     },
   },

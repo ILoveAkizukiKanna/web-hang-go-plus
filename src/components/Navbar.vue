@@ -79,8 +79,8 @@ export default {
 				'7': '/asr-user-manage/users',
 				'9': '/asr-commission/applied/commission',
 				'12': '/asr-topic/topics',
-				'13': '/asr-commission/type/commission',
-				'14': '/asr-topic/type/topic',
+				'13': '/asr-commission/type/commissions',
+				'14': '/asr-topic/type/topics',
         '15': '/asr-user-manage/complaints',
         '16': '/asr-user-manage/appeal'
 			},

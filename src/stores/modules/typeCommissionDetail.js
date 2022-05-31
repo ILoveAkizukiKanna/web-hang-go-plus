@@ -19,10 +19,7 @@ export default {
         },
         TYPE_COMMISSION_CHANGE: () => {
 
-        },
-        TYPE_COMMISSION_ADD: () => {
-
-        },
+        }
     },
     actions: {
         GET_TYPE_COMMISSION_DETAIL: ({ commit }, payload) => {
@@ -34,7 +31,6 @@ export default {
                         id : payload.typeId
                     }
                 }).then(response => {
-
                     commit('SET_TYPE_COMMISSION_DETAIL', {
                         typeCommissionDetailInfo: response
                     })

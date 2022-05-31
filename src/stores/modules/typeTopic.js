@@ -7,6 +7,9 @@ export default {
     mutations: {
         SET_TYPE_TOPIC: (state, payload) => {
             state.typeTopicInfo = payload.typeTopicInfo
+        },
+        TYPE_TOPIC_ADD: () => {
+
         }
     },
     actions: {
