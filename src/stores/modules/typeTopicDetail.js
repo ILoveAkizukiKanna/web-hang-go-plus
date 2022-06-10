@@ -11,7 +11,7 @@ export default {
                 typeId: info.id,
                 name: info.name,
                 photo: 'https://marfr1.2022martu1.cn/' + info.image,
-                hasPhoto: info.image !== '',
+                hasPhoto: info.image != null,
             }
         },
         TYPE_TOPIC_DEL: () => {
@@ -35,10 +35,8 @@ export default {
                     commit('SET_TYPE_TOPIC_DETAIL', {
                         typeTopicDetailInfo: response
                     })
-                    console.log(response.data)
                     resolve(true)
                 }).catch(err => {
-                    // console.log(err)
                     reject(err)
                 })
             })

@@ -34,7 +34,6 @@ export default {
                     commit('SET_TYPE_COMMISSION_DETAIL', {
                         typeCommissionDetailInfo: response
                     })
-                    console.log(response.data)
                     resolve(true)
                 }).catch(err => {
                     reject(err)

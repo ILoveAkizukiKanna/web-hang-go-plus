@@ -50,7 +50,9 @@
                     <h5>修改图片</h5><br>
                     <form action="" enctype="multipart/form-data">
                       <input type="file" name="" id="file" class="filepath" accept="image/jpeg,image/jpg,image/png" @change="changeImage" />
-                      <img :src="(src=='')?typeTopicDetailInfo.photo:src" id="show" >
+                      <div v-if="showPhoto"> 
+                        <img :src="(src=='')?typeTopicDetailInfo.photo:src" id="show" >
+                      </div>
                     </form>
                   </div>
                 </a-modal>
@@ -84,7 +86,8 @@ export default {
 
       visible: false,
       loading: false,
-      src: ''
+      src: '',
+      showPhoto: false
     }
   },
   computed: {
@@ -106,6 +109,7 @@ export default {
         that.$message.error('加载类别详细信息失败')
       }).then(() => {
         that.loaded = true
+        console.log(this.typeTopicDetailInfo)
       })
     },
     deleteType(typeId) {
@@ -140,6 +144,7 @@ export default {
       var that = this;
       reader.readAsDataURL(file);
       reader.onload = function () {
+        that.showPhoto = true
         that.src = this.result
       };
     },
@@ -164,7 +169,8 @@ export default {
   },
   mounted() {
     this.getInfo()
-  }
+    this.showPhoto = this.typeTopicDetailInfo.hasPhoto
+  }  
 }
 </script>
 

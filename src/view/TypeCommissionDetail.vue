@@ -55,8 +55,8 @@
                     <h5>修改图片</h5><br>
                     <form action="" enctype="multipart/form-data">
                       <input type="file" name="" id="file" class="filepath" accept="image/jpeg,image/jpg,image/png" @change="changeImage" />
-                      <div v-if="typeCommissionDetailInfo.hasPhoto">  
-                        <img :src="typeCommissionDetailInfo.photo" id="show" >
+                      <div v-if="showPhoto">  
+                        <img :src="(src=='')?typeCommissionDetailInfo.photo:src" id="show" >
                       </div>
                     </form>
                   </div>
@@ -94,7 +94,8 @@ export default {
 
       visible: false,
       loading: false,
-      src: ''
+      src: '',
+      showPhoto: false
     }
   },
   computed: {
@@ -151,6 +152,7 @@ export default {
       reader.readAsDataURL(file);
       reader.onload = function() {
         // that.typeCommissionDetailInfo.photo = this.result;
+        that.showPhoto = true
         that.src = this.result
       };
     },
@@ -160,7 +162,6 @@ export default {
       that.$store.dispatch('CHANGE_TYPE_COMMISSION', {
         typeId: typeId,
         name: that.typeCommissionDetailInfo.name,
-        // photo: that.typeCommissionDetailInfo.photo
         photo: that.src
       }).catch(() => {
         that.$message.error('操作失败')
@@ -175,6 +176,7 @@ export default {
   },
   mounted() {
     this.getInfo()
+    this.showPhoto = this.typeCommissionDetailInfo.hasPhoto
   }
 }
 </script>
