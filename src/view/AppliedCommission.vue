@@ -2,7 +2,7 @@
 	<div class="h-full">
 		<a-row class="h-full">
 			<a-col span="3" class="h-full" style="width: 250px">
-				<Navbar class="w-auto" default-selected-key="3"></Navbar>
+				<Navbar class="w-auto" default-selected-key="5"></Navbar>
 			</a-col>
 			<a-col style="background-color: #f0f2f5;overflow-y: auto;margin-left: 250px" class="h-full">
 				<Header></Header>
