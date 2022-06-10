@@ -20,6 +20,7 @@ export default {
                     url: 'inform/',
                     method: 'get'
                 }).then(response => {
+                    console.log(response)
                     commit('SET_COMPLAINT_LIST', {
                         complaintList: response
                     })

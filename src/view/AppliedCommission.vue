@@ -71,7 +71,7 @@ export default {
       this.$store.dispatch('GET_APPLIED_COMMISSION').then(() => {
       })
           .catch(() => {
-            that.$message.error('加载已通过委托列表失败')
+            that.$message.error('加载委托列表失败')
           })
     },
     routeToCommission (commissionId) {

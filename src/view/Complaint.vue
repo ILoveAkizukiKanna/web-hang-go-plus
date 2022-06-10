@@ -39,7 +39,7 @@
               </a-descriptions>
             </a-card>
             <a-card class='mb-3'>
-              <a-descriptions title="举报人信息">
+              <a-descriptions title="举报详情">
                 <a-descriptions-item label="举报权限">{{complaintInfo.authority === 0 ? '发布话题' :
                                                       complaintInfo.authority === 1 ? '发布评论' :
                                                       complaintInfo.authority === 2 ? '发布委托' :
@@ -70,7 +70,7 @@
                 </template>
                 <div>
                   <h5>输入驳回理由</h5><br>
-                  <a-input v-model="reason" placeholder="类别名称" />
+                  <a-input v-model="reason" placeholder="驳回理由" />
                 </div>
               </a-modal>
             </div>
@@ -130,7 +130,7 @@ export default {
     notPass (complaintId) {
       const that = this
       this.$confirm({
-        title: '确定驳回改用户的举报吗？',
+        title: '确定驳回该用户的举报吗？',
         okText: '确定',
         okType: 'info',
         cancelText: '取消',
@@ -155,7 +155,7 @@ export default {
     pass (complaintId) {
       const that = this
       this.$confirm({
-        title: '确定通过改用户的举报吗？',
+        title: '确定通过该用户的举报吗？',
         okText: '确定',
         okType: 'info',
         cancelText: '取消',

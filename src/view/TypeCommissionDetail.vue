@@ -54,11 +54,10 @@
                     <br><br><br><br>
                     <h5>修改图片</h5><br>
                     <form action="" enctype="multipart/form-data">
-<!--                      <input type="file" name="" id="file" class="filepath" accept="image/jpeg,image/jpg,image/png" @change="changeImage" />-->
                       <input type="file" name="" id="file" class="filepath" accept="image/jpeg,image/jpg,image/png" @change="changeImage" />
-<!--                      <input id="file" class="filepath" onchange="changepic()" type="file"/><br>-->
-<!--                      <img :src="(src == null)?typeCommissionDetailInfo.photo:src" id="show" >-->
-                      <img :src="(src=='')?typeCommissionDetailInfo.photo:src" id="show" >
+                      <div v-if="typeCommissionDetailInfo.hasPhoto">  
+                        <img :src="typeCommissionDetailInfo.photo" id="show" >
+                      </div>
                     </form>
                   </div>
                 </a-modal>

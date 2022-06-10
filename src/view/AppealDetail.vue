@@ -45,7 +45,7 @@
 								>驳回</button>
 								<a-spin size="large" :spinning="spinning" />
 								<button
-									class="w-1/5 h-full text-lg ant-btn-danger focus:border-0"
+									class="w-1/5 h-full text-lg ant-btn-primary focus:border-0"
 									@click="PassCheck(appealDetail.id)"
 								>通过</button>
 								<a-spin size="large" :spinning="spinning" />

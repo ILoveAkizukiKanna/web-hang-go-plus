@@ -11,7 +11,7 @@ export default {
                 typeId: info.id,
                 name: info.name,
                 photo: 'https://marfr1.2022martu1.cn/' + info.image,
-                hasPhoto: info.photo != '',
+                hasPhoto: info.image != '',
             }
         },
         TYPE_COMMISSION_DEL: () => {
@@ -37,7 +37,6 @@ export default {
                     console.log(response.data)
                     resolve(true)
                 }).catch(err => {
-                    // console.log(err)
                     reject(err)
                 })
             })

@@ -44,34 +44,26 @@ export default {
         title: '序号',
         dataIndex: 'id',
         key: 'id',
-        width: '4%',
+        width: '10%',
       },
       {
-        dataIndex: 'user.id',
-        key: 'userid',
-        slots: {title: 'customTitle'},
-        scopedSlots: {customRender: 'userid'},
-        width: '4%',
-      },
-      {
-        title: '昵称',
+        title: '举报人',
         dataIndex: 'user.nickName',
         key: 'nickName',
         width: '15%',
         // ellipsis: true
       },
       {
-        title: '用户头像',
-        dataIndex: 'user.avatarUrl',
-        key: 'avatarUrl',
-        scopedSlots: {customRender: 'avatarUrl'},
-        width: '10%',
+        title: '被举报人',
+        dataIndex: 'to_user.nickName',
+        key: 'nickName2',
+        width: '15%',
       },
       {
         title: '举报理由',
         dataIndex: 'reason',
         key: 'reason',
-        width: '25%',
+        width: '20%',
       },
       {
         title: ' 时间',
@@ -84,7 +76,7 @@ export default {
         key: 'authority',
         dataIndex: 'authority',
         scopedSlots: {customRender: 'authority'},
-        width: '12%',
+        width: '10%',
       },
       {
         title: '操作',
@@ -106,7 +98,7 @@ export default {
       this.$store.dispatch('GET_COMPLAINT_LIST')
           .catch(() => {
             // console.log(err)
-            that.$message.error('获取用户失败')
+            that.$message.error('获取举报列表失败')
           })
     },
     routeToComplaint(complaintId) {

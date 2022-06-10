@@ -83,7 +83,7 @@ export default {
       this.$store.dispatch('GET_TOPICS').then(() => {
       })
 			.catch(() => {
-			that.$message.error('加载已通过话题列表失败')
+			that.$message.error('加载话题列表失败')
 			})
     },
     routeToTopic (topicId) {

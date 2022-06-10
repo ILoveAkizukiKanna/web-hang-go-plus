@@ -117,7 +117,11 @@ export default {
         name: that.name,
         photo: that.src
       }).catch(() => {
-        that.$message.error('操作失败')
+        if (that.name == "") {
+          that.$message.error("请填写类别名称")
+        } else {
+          that.$message.error('网络错误')
+        }  
       }).then((data) => {
         if (data) {
           that.$message.success('操作成功')
