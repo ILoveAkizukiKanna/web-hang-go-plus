@@ -13,7 +13,7 @@ export default {
 		GET_APPLIED_COMMISSION: ({ commit }) => {
 			return new Promise((resolve, reject) => {
 				request({
-					url: '/commission/search/all',
+					url: '/commission/search/all/Admin',
 					method: 'get',
 					data: {
 					}
