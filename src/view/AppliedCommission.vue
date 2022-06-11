@@ -43,13 +43,19 @@ export default {
           title: '委托起止时间',
           dataIndex: 'commissionTime',
           key: 'commissionTime',
-          width: '40%',
+          width: '30%',
         },
         {
           title: '是否实时',
           dataIndex: 'isReal',
           key: 'isReal',
-          width: '25%',
+          width: '15%',
+        },
+        {
+          title: '委托状态',
+          dataIndex: 'status',
+          key: 'status',
+          width: '20%',
         },
         {
           title: '操作',

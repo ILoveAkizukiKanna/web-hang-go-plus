@@ -26,7 +26,11 @@ export default {
 							commissionName: m.name,
 							commissionTime: m.start_time + '-' + m.end_time,
 							isReal: m.real_time == 1 ? '是' : '否' ,
-							key: m.id
+							key: m.id,
+							status: (m.status === 1) ? "已发布" :
+									(m.status === 2) ? "已申请" :
+									(m.status === 3) ? "申请完成" :
+									(m.status === 4) ? "已完成" : "未知状态"
 						})
 					}
 					commit('SET_APPLIED_COMMISSION', {
