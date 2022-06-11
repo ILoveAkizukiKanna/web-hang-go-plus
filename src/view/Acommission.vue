@@ -13,11 +13,30 @@
 							<a-descriptions title="基本信息">
 								<a-descriptions-item label="委托名称">{{ commissionInfo.name }}</a-descriptions-item>
 								<a-descriptions-item label="是否实时">{{ commissionInfo.isReal }}</a-descriptions-item>
+                <a-descriptions-item label="委托状态">{{ (commissionInfo.status === 1) ? "已发布":
+                                                        (commissionInfo.status === 2) ? "已申请":
+                                                        (commissionInfo.status === 3) ? "申请完成":
+                                                        (commissionInfo.status === 4) ? "已完成": "未知状态"}}
+                </a-descriptions-item>
 								<a-descriptions-item label="开始时间">{{ commissionInfo.startTime }}</a-descriptions-item>
 								<a-descriptions-item label="截止时间">{{ commissionInfo.stopTime }}</a-descriptions-item>
 								<a-descriptions-item label="委托类别">{{ commissionInfo.type }}</a-descriptions-item>
 							</a-descriptions>
 						</a-card>
+            <a-card class="mb-3">
+              <a-descriptions title="发布者信息">
+                <a-descriptions-item label="id">{{ commissionInfo.user.id }}</a-descriptions-item>
+                <a-descriptions-item label="昵称">{{ commissionInfo.user.nickName }}</a-descriptions-item>
+                <a-descriptions-item label="邮箱">{{ commissionInfo.user.email }}</a-descriptions-item>
+              </a-descriptions>
+            </a-card>
+            <a-card v-if="commissionInfo.acceptedUser !== null" class="mb-3">
+              <a-descriptions title="接取者信息">
+                <a-descriptions-item label="id">{{ commissionInfo.acceptedUser.id }}</a-descriptions-item>
+                <a-descriptions-item label="昵称">{{ commissionInfo.acceptedUser.nickName }}</a-descriptions-item>
+                <a-descriptions-item label="邮箱">{{ commissionInfo.acceptedUser.email }}</a-descriptions-item>
+              </a-descriptions>
+            </a-card>
 						<a-card class="mb-3">
 							<a-descriptions title="描述">
 								<a-descriptions-item>{{ commissionInfo.description }}</a-descriptions-item>
@@ -155,11 +174,15 @@ export default {
 							that.$message.success('操作成功')
 							that.$router.back()
 						}
-					}).catch(() => {
-						// console.log(err)
-			that.spinning = false
-			that.$message.error('操作失败，该委托可能已经被处理，请返回委托列表确认。')
-					})
+					}).catch((error) => {
+						console.log(error.response)
+            that.spinning = false
+            if (error.response.data.detail === null) {
+              that.$message.error('委托可能已经完成了，无法下线')
+            } else {
+              that.$message.error(error.response.data.detail)
+            }
+          })
 				}
 			})
 		}

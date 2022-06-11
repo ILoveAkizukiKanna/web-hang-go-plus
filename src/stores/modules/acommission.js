@@ -17,8 +17,12 @@ export default {
 				description: info.description,
 				photo: 'https://marfr1.2022martu1.cn' + info.photo,
 				hasPhoto: info.photo !== '',
-				type: info.commission_type.name
+				type: info.commission_type.name,
+				status: info.status,
+				user: info.user,
+				acceptedUser: info.accepted_user,
 			}
+			console.log(state.commissionInfo)
 		},
 		SET_CCOMMENTS: (state, payload) => {
 			state.comments = payload.comments
