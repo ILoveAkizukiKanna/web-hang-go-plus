@@ -31,8 +31,8 @@
               <a-button key="submit" type="primary" :loading="loading" @click="handleOk()">提交</a-button>
             </template>
             <div>
-              <h5>类别名称</h5><br>
-              <a-input v-model="name" placeholder="请输入类别名称" />
+              <h5>类别名称(少于6个字符)</h5><br>
+              <a-input v-model="name" placeholder="请输入类别名称" oninput="if(value.length > 6)value = value.slice(0, 6)" />
               <br><br><br><br>
               <h5>选择图片</h5><br>
               <form action="" enctype="multipart/form-data">
